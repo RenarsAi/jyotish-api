@@ -1,0 +1,23 @@
+{
+  "name": "Jyotish API",
+  "description": "A REST API for Jyotish (Vedic Astrology) calculations",
+  "services": [
+    {
+      "type": "web",
+      "name": "jyotish-api",
+      "env": "docker",
+      "dockerfilePath": "./api/Dockerfile",
+      "dockerContext": "./api",
+      "plan": "starter",
+      "healthCheckPath": "/api/ping",
+      "envVars": [
+        {
+          "key": "COMPOSER_ALLOW_SUPERUSER",
+          "value": "1"
+        }
+      ],
+      "buildCommand": "cd api && composer install --no-interaction --optimize-autoloader && cd ../swetest/src && make clean && make && chmod 777 . && chmod +x swetest",
+      "startCommand": "service php7.4-fpm start && nginx -g 'daemon off;'"
+    }
+  ]
+} 

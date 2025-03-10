@@ -98,6 +98,44 @@ To install and run the Vedic Astrology API locally, follow these steps:
 
    Visit [http://localhost:9393/api/ping](http://localhost:9393/api/ping) to check if the API is up and running.
 
+## Deployment on Render
+
+To deploy this API on Render, follow these steps:
+
+1. **Fork or clone this repository to your GitHub account**
+
+2. **Sign up for a Render account**:
+   Visit [render.com](https://render.com) and create an account if you don't have one.
+
+3. **Create a new Web Service**:
+   - Click on "New" and select "Web Service"
+   - Connect your GitHub repository
+   - Select the repository containing the jyotish-api code
+
+4. **Configure the service**:
+   - **Name**: Choose a name for your service
+   - **Environment**: Select "Docker"
+   - **Branch**: Select your main branch (usually "main" or "master")
+   - **Root Directory**: Leave empty
+   - **Docker Command**: Leave empty (Render will use the CMD from your Dockerfile)
+
+5. **Set environment variables**:
+   - Add `COMPOSER_ALLOW_SUPERUSER=1`
+
+6. **Configure advanced settings**:
+   - **Port**: 9393
+   - **Health Check Path**: `/api/ping`
+
+7. **Deploy**:
+   - Click "Create Web Service"
+   - Render will automatically build and deploy your application
+
+8. **Access your API**:
+   - Once deployed, your API will be available at `https://your-service-name.onrender.com`
+   - Test it by visiting `https://your-service-name.onrender.com/api/ping`
+
+Alternatively, you can use the blueprint.json and render.yaml files included in this repository for automatic deployment configuration.
+
 ## API Documentation
 
 The API documentation is available via Swagger UI:
